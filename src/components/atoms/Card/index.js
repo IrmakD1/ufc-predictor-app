@@ -2,7 +2,8 @@ import React from 'react'
 import { View, StyleSheet, TouchableWithoutFeedback, Image, Text } from 'react-native'
 
 const Card = ({ text, img, navigation, route }) => {
-    return(
+    
+     return ( 
         <TouchableWithoutFeedback onPress={() => {
             navigation.navigate(route)
         }}>
