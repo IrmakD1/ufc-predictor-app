@@ -1,11 +1,20 @@
-import { ADD_EVENT } from '../actions/events'
+import { ADD_EVENT, ADD_EVENT_DETAILS } from '../actions/events'
 
 const event = (state = null, action) => {
     switch (action.type) {
         case ADD_EVENT : 
             return {
                 ...state,
-                ...action.event
+                eventData: {
+                    ...action.event
+                }
+            }
+        case ADD_EVENT_DETAILS : 
+            return {
+                ...state,
+                eventDetails: {
+                    ...action.event
+                }
             }
         default :
             return state

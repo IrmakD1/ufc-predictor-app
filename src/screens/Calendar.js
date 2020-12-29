@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { connect } from 'react-redux';
 import { filter } from 'lodash'
 
 import * as eventSelectors from '../selectors/events'
 import * as eventActions from '../actions/events'
-import { Calendar, EventModal } from '../components/atoms'
+import { Calendar, EventModal } from '../components/molecules'
 
 class CalendarScreen extends Component {
 
@@ -18,7 +18,17 @@ class CalendarScreen extends Component {
         navigation.navigate('Home')
     }
 
-    handleEventPress = () => {
+    handleDayPress = (date) => {
+        const { events } = this.props
+        
+        const filtered = filter(events, event => event.start_date === date)
+
+        filtered.length > 0 ? 
+            this.setState(() => ({event: filtered[0]})) :  
+            this.setState(() => ({event: ''}))
+    }
+
+    handleEventModalPress = () => {
         const { handleAddEvent, navigation } = this.props
         const { event } = this.state
 
@@ -28,18 +38,7 @@ class CalendarScreen extends Component {
         navigation.navigate('Event')
     }
 
-    handleDayPress = (date) => {
-        const { events } = this.props
-
-        console.log('events', events);
-        
-        // const filtered = filter(markedDates, event => event.date === date)
-        const filtered = filter(events, event => event.start_date === date)
-
-        filtered.length > 0 ? this.setState(() => ({event: filtered[0]})) :  this.setState(() => ({event: ''}))
-    }
-
-    handleModalClose = () => this.setState(() => ({event: ''}))
+    handleEventModalClose = () => this.setState(() => ({event: ''}))
 
     render() {
 
@@ -50,17 +49,28 @@ class CalendarScreen extends Component {
             <View >
                 <Calendar handlePress={this.handleOnPress} navigation={navigation} markedDates={markedDates} handleDayPress={this.handleDayPress}/>
                 {event !== '' && (
-                    <EventModal 
-                        name={event.name}
-                        handleOnPress={this.handleEventPress}
-                        handleOnClose={this.handleModalClose}
-                        visible={modalVisible} 
-                    />
+                    <View style={styles.modalContainer}>
+                        <EventModal 
+                            name={event.name}
+                            handleOnPress={this.handleEventModalPress}
+                            handleOnClose={this.handleEventModalClose}
+                            visible={modalVisible} 
+                        />
+                    </View>
                 )}
             </View>
         )
     }
 } 
+
+const styles = StyleSheet.create({
+    modalContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
+})
+
 
 const mapStateToProps = (state) => ({
     markedDates: eventSelectors.getMarkedDates(state),

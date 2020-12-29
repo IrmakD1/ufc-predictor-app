@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { createStackNavigator } from '@react-navigation/stack' 
 import { NavigationContainer } from '@react-navigation/native'
+
 import { connect } from 'react-redux';
 
 import { Home, Predict, Event, Calendar } from './screens'
 import { Header } from './components/atoms'
 import * as eventActions from './actions/events';
-
 
 const Stack = createStackNavigator()
 

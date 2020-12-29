@@ -1,4 +1,6 @@
-import { ADD_FIGHTER } from '../actions/fighters.js'
+import { ADD_FIGHTER, ADD_FIGHTER_DETAILS, CLEAR_FIGHTER_DETAILS } from '../actions/fighters.js'
+
+const initialState = {}
 
 const fighters = (state = null, action) => {
     switch (action.type) {
@@ -6,6 +8,13 @@ const fighters = (state = null, action) => {
             return {
                 ...state,
             }
+        case ADD_FIGHTER_DETAILS :
+            return {
+                ...state,
+                ...action.fightersDetails
+            }
+        case CLEAR_FIGHTER_DETAILS :
+            return initialState
         default :
             return state
     }

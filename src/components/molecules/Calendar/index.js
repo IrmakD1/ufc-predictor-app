@@ -1,6 +1,7 @@
 import React from 'react'
-import { View, Button, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { Calendar } from 'react-native-calendars'
+import { Button } from '../../atoms'
 
 
 const CalendarContainer = ({ handlePress, navigation, markedDates, handleDayPress }) => {
@@ -16,7 +17,7 @@ const CalendarContainer = ({ handlePress, navigation, markedDates, handleDayPres
             </View>
             <View style={styles.buttonContainer}>
                 <View style={styles.button}>
-                    <Button title='Go Back' onPress={() => handlePress(navigation)}/>
+                    <Button text='Go Back' handlePress={() => handlePress(navigation)}/>
                 </View>
             </View>
         </View>
