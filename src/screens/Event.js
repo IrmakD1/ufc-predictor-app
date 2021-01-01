@@ -7,7 +7,7 @@ import * as eventSelectors from '../selectors/events'
 import * as fighterSelectors from '../selectors/fighters'
 import * as eventActions from '../actions/events'
 import * as fighterActions from '../actions/fighters'
-import { Banner, BackArrow } from '../components/atoms';
+import { BackBanner } from '../components/molecules'
 import Styles from '../assets/constants/styles'
 
 class Event extends Component {
@@ -79,12 +79,11 @@ class Event extends Component {
 
         return (
             <View style={styles.screen}>
-                <View>
-                    <Banner text={"Select a Fight to Predict"} />
-                </View>
-                <View style={styles.arrowContainer}>
-                    <BackArrow navigation={navigation} route={'Calendar'}/>
-                </View>
+                <BackBanner 
+                    navigation={navigation} 
+                    text='Select a Fight to Predict' 
+                    route="Calendar" 
+                    marginLeft={-90}/>
                 <View style={styles.listContainer}>
                     <FlatList 
                         data={eventDetails} 

@@ -39,8 +39,20 @@ export const callFightersDetails = async (fighterOneId, fighterTwoId) => {
     try {
         const { data } = await axios.get(url)
 
-        console.log(data);
+        return data
 
+    } catch (err) {
+        //Need to create an error handler
+        console.log('error: ', err)
+    }
+}
+
+export const callWeightclassDetails = async (weight) => {
+    const url = `http://192.168.0.8:9000/fighters/weightclass/${weight}`
+
+    try {
+        const { data } = await axios.get(url)
+        
         return data
 
     } catch (err) {

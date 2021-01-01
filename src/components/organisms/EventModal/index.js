@@ -2,7 +2,6 @@ import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import Modal from 'react-native-modal';
 
-import { Button } from '../../atoms'
 import { ButtonGroup } from '../../molecules'
 
 const EventModal = ({ name, handleOnPress, handleOnClose }) => {

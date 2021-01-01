@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native'
 
 import { connect } from 'react-redux';
 
-import { Home, Predict, Event, Calendar } from './screens'
+import { Home, Predict, Event, Calendar, Weights, Fighters } from './screens'
 import { Header } from './components/atoms'
 import * as eventActions from './actions/events';
 
@@ -33,6 +33,8 @@ class Router extends Component {
                     <Stack.Screen name='Predict' component={Predict}/>
                     <Stack.Screen name='Event' component={Event}/>
                     <Stack.Screen name='Calendar' component={Calendar}/>
+                    <Stack.Screen name='Weights' component={Weights}/>
+                    <Stack.Screen name='Fighters' component={Fighters}/>
                 </Stack.Navigator>
             </NavigationContainer>
         )

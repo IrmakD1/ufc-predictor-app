@@ -5,7 +5,8 @@ import { filter } from 'lodash'
 
 import * as eventSelectors from '../selectors/events'
 import * as eventActions from '../actions/events'
-import { Calendar, EventModal } from '../components/molecules'
+import { Calendar } from '../components/molecules'
+import { EventModal } from '../components/organisms'
 
 class CalendarScreen extends Component {
 

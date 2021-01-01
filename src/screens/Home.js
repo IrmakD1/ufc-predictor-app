@@ -11,7 +11,7 @@ const Home = ({navigation}) => {
     return (
         <View style={styles.screen}>
             <Card text='Choose Event' img={CalendarIcon} navigation={navigation} route='Calendar' />
-            <Card text='Choose Fighter' img={FistIcon} navigation={navigation}  route='Predict' />
+            <Card text='Choose Fighter' img={FistIcon} navigation={navigation}  route='Weights' />
         </View>
     )
 }

@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import { connect } from 'react-redux';
 
-import { Loader, PredictCard } from '../components/molecules'
+import { Loader } from '../components/molecules'
+import { PredictCard } from '../components/organisms'
 import * as fighterSelectors from '../selectors/fighters'
 import predict from '../services/predict'
 import Styles from '../assets/constants/styles'
