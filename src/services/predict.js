@@ -1,4 +1,3 @@
-import { ADD_EVENT } from "../actions/events"
 
 const predict = (a, b) => {
     const fighterA = {...a, num: Math.random()}

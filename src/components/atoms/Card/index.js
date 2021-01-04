@@ -17,8 +17,8 @@ const Card = ({ text, img, navigation, route }) => {
 
 const styles = StyleSheet.create({
     card: {
-        width: 150,
-        height: 150,
+        width: 225,
+        height: 225,
         shadowOpacity: 0.26,
         elevation: 8,
         backgroundColor: 'white',
@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
         margin: 10
     },
     image: {
-        width: 80,
-        height: 80,
+        width: 120,
+        height: 120,
         marginBottom: 2,
     },
     text: {

@@ -16,6 +16,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'red',
         justifyContent: 'center',
         alignItems: 'center',
+        shadowOpacity: 0.26,
+        elevation: 8,
+        borderRadius: 10,
     },
     text: {
         color: 'white',

@@ -1,14 +1,38 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
-const ListItem = ({ text, hanldeOnPress }) => {
-    return (
-        <TouchableOpacity onPress={hanldeOnPress}>
-            <View style={styles.textContainer}>
-                <Text style={styles.text}>{text}</Text>
-            </View>
-        </TouchableOpacity>
-    )
+const ListItem = ({ text, hanldeOnPress, rank = null, colour, highlight }) => {
+
+    console.log('highlight: ', highlight);
+    if (rank !==null) {
+        if ( highlight !== false ) {
+            return (
+                <TouchableOpacity onPress={hanldeOnPress}>
+                    <View style={{...styles.textContainer, backgroundColor: 'gray'}}>
+                        <Text style={{...styles.text}}>{`${rank}: ` }</Text>
+                        <Text style={{...styles.text, color: colour}}>{text}</Text>
+                    </View>
+                </TouchableOpacity>
+            )
+        } else {
+            return (
+                <TouchableOpacity onPress={hanldeOnPress}>
+                    <View style={styles.textContainer}>
+                        <Text style={{...styles.text}}>{`${rank}: ` }</Text>
+                        <Text style={{...styles.text, color: colour}}>{text}</Text>
+                    </View>
+                </TouchableOpacity>
+            )
+        }
+    } else {
+        return (
+            <TouchableOpacity onPress={hanldeOnPress}>
+                <View style={styles.textContainer}>
+                    <Text style={styles.text}>{text}</Text>
+                </View>
+            </TouchableOpacity>
+        )
+    }
 }
 
 const styles = StyleSheet.create({
@@ -18,6 +42,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 10,
         padding: 20,
+        flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         margin: 10

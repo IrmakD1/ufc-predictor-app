@@ -21,6 +21,7 @@ export const clearFighterDetails = () => ({
 export const handleAddFighterDetails = (fighters) => async dispatch => {
     try {
         const fightersDetails = await callFightersDetails(fighters.competitorOneId, fighters.competitorTwoId)
+        
         dispatch(addFighterDetails(fightersDetails))
     } catch (err) {
         //Need to make an error action handler

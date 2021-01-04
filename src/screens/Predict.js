@@ -41,7 +41,7 @@ class Predict extends Component {
 
     handlePressPredictAgain = () => {
         const { navigation } = this.props
-        navigation.navigate('Event')
+        navigation.goBack()
     }
 
     render() {
