@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import { filter } from 'lodash'
 
 import * as eventSelectors from '../selectors/events'
+import * as errorSelectors from '../selectors/error'
 import * as eventActions from '../actions/events'
+import { ErrorModal } from '../components/atoms'
 import { Calendar } from '../components/molecules'
 import { EventModal } from '../components/organisms'
 
@@ -41,9 +43,15 @@ class CalendarScreen extends Component {
 
     handleEventModalClose = () => this.setState(() => ({event: ''}))
 
+    handleErrorClose = () => {
+        const { navigation } = this.props
+
+        navigation.navigate('Home')
+    }
+
     render() {
 
-        const { navigation, markedDates } = this.props
+        const { navigation, markedDates, error } = this.props
         const { event, modalVisible } = this.state
 
         return (
@@ -57,6 +65,13 @@ class CalendarScreen extends Component {
                             handleOnClose={this.handleEventModalClose}
                             visible={modalVisible} 
                         />
+                    </View>
+                )}
+                {error.error === 'Event List' && (
+                    <View style={styles.modalContainer}>
+                        <ErrorModal
+                            handleClose={this.handleErrorClose} 
+                            text="There was an error getting the event data."/>
                     </View>
                 )}
             </View>
@@ -75,7 +90,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({
     markedDates: eventSelectors.getMarkedDates(state),
-    events: eventSelectors.getEventList(state)
+    events: eventSelectors.getEventList(state),
+    error: errorSelectors.getError(state)
 })
 
 

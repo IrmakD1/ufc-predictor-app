@@ -34,6 +34,11 @@ class Weights extends Component {
 
         await handleAddFighterDetails({ competitorOneId: fighterOne[0].competitor_id, competitorTwoId: fighterTwo[0].competitor_id})
 
+        this.setState(() => ({
+            choice1: '',
+            choice2: ''
+        }))
+
         navigation.navigate('Predict')
     }
 
@@ -65,9 +70,9 @@ class Weights extends Component {
     }
 
     isHighlighted = (item) => {
-        const { choice1 } = this.state
+        const { choice1, choice2 } = this.state
 
-        return choice1 === item.competitor_id ? true : false 
+        return choice1 === item.competitor_id || choice2 === item.competitor_id ? true : false 
     }
 
     render() {

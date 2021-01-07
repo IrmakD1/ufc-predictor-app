@@ -1,4 +1,5 @@
 import { callEventsCalendar, callEventDetails } from '../services'
+import { addError } from './error'
 
 export const ADD_EVENTS = 'ADD_EVENTS'
 export const ADD_EVENT = 'ADD_EVENT'
@@ -29,10 +30,13 @@ export const handleAddEvents = () => async dispatch => {
     try {
         const eventsList = await callEventsCalendar()
     
-        dispatch(addEvents(eventsList))
+        if (eventsList === undefined) {
+            dispatch(addError({ error: 'Event List'}))
+        } else {
+            dispatch(addEvents(eventsList))
+        }
     } catch (err) {
-        //Need to make an error action handler
-        console.log('handle events error: ', err);
+        dispatch(addError({ error: 'Event List'}))
     }
 }
 
@@ -41,9 +45,13 @@ export const handleAddEventDetails = (eventId) => async dispatch => {
     try {
         const eventDetails = await callEventDetails(eventId)
 
-        dispatch(addEventDetails(eventDetails))
+            
+        if (eventsList === undefined) {
+            dispatch(addError({ error: 'Event Details'}))
+        } else {
+            dispatch(addEventDetails(eventDetails))
+        }
     } catch (err) {
-        //Need to make an error action handler
-        console.log('handle event details error: ', err);
+        dispatch(addError({ error: 'Event Details' }))
     }
 }

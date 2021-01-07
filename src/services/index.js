@@ -3,7 +3,7 @@ import axios from 'axios'
 export const callEventsCalendar = async () => {
     
     // need to get a better way of saving Env var
-    const url = 'http://192.168.0.8:9000/events/calendar'
+    const url = 'http://192.168.0.8:9000/events/calendars'
 
     try {
         const { data } = await axios.get(url)
@@ -11,8 +11,7 @@ export const callEventsCalendar = async () => {
         return data
 
     } catch (err) {
-        //Need to create an error handler
-        console.log('error: ', err)
+        throw Error(err.message)
     }
 }
 
@@ -27,8 +26,7 @@ export const callEventDetails = async (eventId) => {
         return data
 
     } catch (err) {
-        //Need to create an error handler
-        console.log('error: ', err)
+        throw Error(err.message)
     }
     
 }
@@ -42,8 +40,7 @@ export const callFightersDetails = async (fighterOneId, fighterTwoId) => {
         return data
 
     } catch (err) {
-        //Need to create an error handler
-        console.log('error: ', err)
+        throw Error(err.message)
     }
 }
 
@@ -56,7 +53,6 @@ export const callWeightclassDetails = async (weight) => {
         return data
 
     } catch (err) {
-        //Need to create an error handler
-        console.log('error: ', err)
+        throw Error(err.message)
     }
 }

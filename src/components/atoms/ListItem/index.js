@@ -2,13 +2,11 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 const ListItem = ({ text, hanldeOnPress, rank = null, colour, highlight }) => {
-
-    console.log('highlight: ', highlight);
     if (rank !==null) {
         if ( highlight !== false ) {
             return (
                 <TouchableOpacity onPress={hanldeOnPress}>
-                    <View style={{...styles.textContainer, backgroundColor: 'gray'}}>
+                    <View style={styles.highlightedContainer}>
                         <Text style={{...styles.text}}>{`${rank}: ` }</Text>
                         <Text style={{...styles.text, color: colour}}>{text}</Text>
                     </View>
@@ -40,6 +38,17 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.26,
         elevation: 8,
         backgroundColor: 'white',
+        borderRadius: 10,
+        padding: 20,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 10
+    },
+    highlightedContainer: {
+        shadowOpacity: 0.26,
+        elevation: 8,
+        backgroundColor: '#f0ebeb',
         borderRadius: 10,
         padding: 20,
         flexDirection: 'row',

@@ -1,4 +1,6 @@
+import { fromPairs } from 'lodash'
 import { callWeightclassDetails } from '../services'
+import { addError } from './error'
 
 export const ADD_WEIGHT = 'ADD_WEIGHT'
 
@@ -22,11 +24,14 @@ export const handleAddWeight = (weight) => async dispatch => {
 export const handleAddWeightClassFighters = (weight) => async dispatch => {
     try {
         const fighters = await callWeightclassDetails(weight)
-        dispatch(addWeightClassFighters(fighters))
+        if (fighters === undefined) {
+            dispatch(addError({error: 'Ranked Fighters'}))
+        } else {
+            dispatch(addWeightClassFighters(fighters))
+        }
         
     } catch (err) {
-        //Need to make an error action handler
-        console.log('handle AddWeightClassFighters error: ', err);
+        dispatch(addError({error: 'Ranked Fighters'}))
     }
 }
  

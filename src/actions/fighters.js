@@ -1,4 +1,7 @@
+import { fromPairs } from 'lodash'
+import { FighterDetails } from '../components/atoms'
 import { callFightersDetails } from '../services'
+import { addError } from './error'
 
 export const ADD_FIGHTER = 'ADD_FIGHTER'
 
@@ -21,10 +24,12 @@ export const clearFighterDetails = () => ({
 export const handleAddFighterDetails = (fighters) => async dispatch => {
     try {
         const fightersDetails = await callFightersDetails(fighters.competitorOneId, fighters.competitorTwoId)
-        
-        dispatch(addFighterDetails(fightersDetails))
+        if (fighterDetails === undefined) {
+            dispatch(addError({error: 'Fighter Details'}))
+        } else {
+            dispatch(addFighterDetails(fightersDetails))
+        }
     } catch (err) {
-        //Need to make an error action handler
-        console.log('handle AddFighter error: ', err);
+        dispatch(addError({error: 'Fighter Details'}))
     }
 }
