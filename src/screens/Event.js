@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import { View, FlatList, StyleSheet } from 'react-native'
 import { connect } from 'react-redux';
 
+import { ErrorModal } from '../components/atoms'
 import { FightCard, FightCardModal } from '../components/molecules'
 import * as eventSelectors from '../selectors/events'
+import * as errorSelectors from '../selectors/error'
 import * as fighterSelectors from '../selectors/fighters'
 import * as eventActions from '../actions/events'
 import * as fighterActions from '../actions/fighters'
@@ -73,8 +75,14 @@ class Event extends Component {
 
     }
 
+    handleErrorClose = () => {
+        const { navigation } = this.props
+
+        navigation.navigate('Home')
+    }
+
     render() {
-        const { eventDetails, fighterDetails, navigation } = this.props
+        const { eventDetails, fighterDetails, navigation, error } = this.props
         const { fighter1, fighter2 } = this.state
 
         return (
@@ -97,7 +105,21 @@ class Event extends Component {
                             handleOnPress={this.handleOnPress}
                             />
                     )}/>
-                    {fighter1.name !== '' && (
+                    {error === 'Event Details' && (
+                        <View style={styles.modalContainer}>
+                            <ErrorModal
+                                handleClose={this.handleErrorClose} 
+                                text="There was an error getting the event data."/>
+                        </View>
+                    )}
+                    {error === 'Fighter Details' && (
+                        <View style={styles.modalContainer}>
+                            <ErrorModal
+                                handleClose={this.handleErrorClose} 
+                                text="There was an error getting fighter data."/>
+                        </View>
+                    )}
+                    {fighter1.name !== '' && error !== 'Fighter Details' && (
                         <View style={styles.modalContainer}>
                             {fighterDetails === undefined && (
                                 <FightCardModal
@@ -128,7 +150,8 @@ class Event extends Component {
 const mapStateToProps = (state) => ({
     eventId: eventSelectors.getEventId(state),
     eventDetails: eventSelectors.getEventDetails(state),
-    fighterDetails: fighterSelectors.getFighterDetails(state)
+    fighterDetails: fighterSelectors.getFighterDetails(state),
+    error: errorSelectors.getError(state)
 })
 
 const styles = StyleSheet.create({

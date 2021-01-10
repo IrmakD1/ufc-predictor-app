@@ -4,13 +4,14 @@ import { connect } from 'react-redux';
 import { filter } from 'lodash'
 
 import Styles from '../assets/constants/styles';
+import * as errorSelectors from '../selectors/error'
 import * as weightActions from '../actions/weight'
 import * as fighterActions from '../actions/fighters'
 import * as weightSelectors from '../selectors/weights'
-import { ListItem } from '../components/atoms';
+import { ListItem, ErrorModal } from '../components/atoms';
 import { BackBanner } from '../components/molecules';
 
-class Weights extends Component {
+class Fighters extends Component {
 
     state = {
         choice1: '',
@@ -75,9 +76,15 @@ class Weights extends Component {
         return choice1 === item.competitor_id || choice2 === item.competitor_id ? true : false 
     }
 
+    handleErrorClose = () => {
+        const { navigation } = this.props
+
+        navigation.navigate('Home')
+    }
+
     render() {
 
-        const { navigation, rankedFighters } = this.props
+        const { navigation, rankedFighters, error } = this.props
         const { choice1, choice2 } = this.state
 
         if(choice1 !== '' && choice2 !== '') {
@@ -91,6 +98,13 @@ class Weights extends Component {
                     text='Select a Fighter' 
                     route="Weights" 
                     marginLeft={-122}/>
+                {error === 'Ranked Fighters' && (
+                <View style={styles.modalContainer}>
+                    <ErrorModal
+                        handleClose={this.handleErrorClose} 
+                        text="There was an error getting the Fighter data."/>
+                </View>
+                )}
                 <View style={styles.listContainer}>
                     <FlatList 
                         data={rankedFighters}
@@ -122,12 +136,18 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         marginTop: -40,
         marginLeft: -350
+    },
+    modalContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 })
 
 const mapStateToProps = (state) => ({
     weightCategory: weightSelectors.getWeightclass(state),
-    rankedFighters: weightSelectors.getRankedFighters(state)
+    rankedFighters: weightSelectors.getRankedFighters(state),
+    error: errorSelectors.getError(state)
 })
 
-export default connect(mapStateToProps, { ...weightActions, ...fighterActions })(Weights)
+export default connect(mapStateToProps, { ...weightActions, ...fighterActions })(Fighters)

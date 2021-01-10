@@ -6,18 +6,10 @@ import { connect } from 'react-redux';
 
 import { Home, Predict, Event, Calendar, Weights, Fighters } from './screens'
 import { Header } from './components/atoms'
-import * as eventActions from './actions/events';
 
 const Stack = createStackNavigator()
 
 class Router extends Component {
-
-
-    componentDidMount() {
-        const { handleAddEvents } = this.props
-
-        handleAddEvents()
-    }
 
     render() {
 
@@ -41,9 +33,5 @@ class Router extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    //not needed anymore
-    events: state.eventsList
-})
 
-export default connect(mapStateToProps, eventActions)(Router)
+export default connect()(Router)

@@ -1,6 +1,6 @@
 import { ADD_ERROR, CLEAR_ERROR } from '../actions/error'
 
-const initialState = {}
+const initialState = null
 
 const error = (state = initialState, action) => {
     switch (action.type) {

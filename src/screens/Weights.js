@@ -6,6 +6,8 @@ import Styles from '../assets/constants/styles';
 import * as weightActions from '../actions/weight'
 import { ListItem } from '../components/atoms';
 import { BackBanner } from '../components/molecules';
+import * as errorActions from '../actions/error'
+import * as errorSelectors from '../selectors/error'
 
 const weightCategories = [
     { name: 'Flyweight', id: 1},
@@ -22,14 +24,21 @@ const weightCategories = [
 ]
 
 class Weights extends Component {
+
+    componentDidMount() {
+        const { handleClearWeightClassFighters } = this.props
+
+        handleClearWeightClassFighters()
+    }
     
     hanldeOnPress = (weight) => {
-        const { navigation, handleAddWeight } = this.props
+        const { navigation, handleAddWeight, handleClearError, handleClearWeightClassFighters } = this.props
 
+        handleClearWeightClassFighters()
+        handleClearError()
         handleAddWeight(weight)
-
         navigation.navigate('Fighters')
-    } 
+    }
 
     render() {
 
@@ -73,6 +82,8 @@ const styles = StyleSheet.create({
     }
 })
 
-const mapStateToProps = () => ({})
+const mapStateToProps = (state) => ({
+    error: errorSelectors.getError(state)
+})
 
-export default connect(mapStateToProps, weightActions)(Weights)
+export default connect(mapStateToProps, { ...weightActions, ...errorActions })(Weights)

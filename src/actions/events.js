@@ -30,13 +30,13 @@ export const handleAddEvents = () => async dispatch => {
     try {
         const eventsList = await callEventsCalendar()
     
-        if (eventsList === undefined) {
-            dispatch(addError({ error: 'Event List'}))
+        if (eventsList.length === 0) {
+            dispatch(addError('Event List'))
         } else {
             dispatch(addEvents(eventsList))
         }
     } catch (err) {
-        dispatch(addError({ error: 'Event List'}))
+        dispatch(addError('Event List'))
     }
 }
 
@@ -44,14 +44,14 @@ export const handleAddEventDetails = (eventId) => async dispatch => {
 
     try {
         const eventDetails = await callEventDetails(eventId)
-
             
-        if (eventsList === undefined) {
-            dispatch(addError({ error: 'Event Details'}))
+        if (eventDetails.length === 0) {
+            dispatch(addError('Event Details'))
         } else {
             dispatch(addEventDetails(eventDetails))
         }
     } catch (err) {
-        dispatch(addError({ error: 'Event Details' }))
+
+        dispatch(addError('Event Details'))
     }
 }

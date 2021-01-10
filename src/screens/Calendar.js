@@ -67,7 +67,7 @@ class CalendarScreen extends Component {
                         />
                     </View>
                 )}
-                {error.error === 'Event List' && (
+                {error === 'Event List' && (
                     <View style={styles.modalContainer}>
                         <ErrorModal
                             handleClose={this.handleErrorClose} 
