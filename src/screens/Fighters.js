@@ -95,7 +95,7 @@ class Fighters extends Component {
             <View style={styles.screen}>
                 <BackBanner 
                     navigation={navigation} 
-                    text='Select a Fighter' 
+                    text='Select 2 Fighters' 
                     route="Weights" 
                     marginLeft={-122}/>
                 {error === 'Ranked Fighters' && (
