@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "test-app",
-    "slug": "test-app",
+    "name": "ufc-predictor-app",
+    "slug": "ufc-predictor",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
