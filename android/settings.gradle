@@ -1,4 +1,4 @@
-rootProject.name = 'ufcpredictorapp'
+rootProject.name = 'test-app'
 
 apply from: '../node_modules/react-native-unimodules/gradle.groovy'
 includeUnimodulesProjects()

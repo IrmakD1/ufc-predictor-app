@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "ufc-predictor-app",
-    "slug": "ufc-predictor-app",
+    "name": "test-app",
+    "slug": "test-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,13 +18,17 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "app.predictor"
+      "bundleIdentifier": "io.fighterpredictor"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.fight_predictor"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "android": {
-      "package": "app.predictor"
     }
   }
 }
